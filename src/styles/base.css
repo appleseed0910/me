@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+html {
+    font-size: 100px;
+}
+
+p {
+    margin: 0;
+}
+
+.page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+}
