@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* 
+    theme color
+    #ffffe0 light white
+    #d98d36 fox orange
+    #961f18 fox red
+    #501523 dark brown
+
+    footer #fccf9a
+
+*/
+
 * {
     margin: 0;
     padding: 0;
