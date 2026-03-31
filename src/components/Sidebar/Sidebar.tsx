@@ -1,15 +1,18 @@
-import './style.less'
+import './style.less';
 
-function Sidebar () {
+import { Link } from 'react-router-dom';
 
-
+function Sidebar() {
     return (
         <>
             <div className="sidebar">
-                Sidebar
+                <nav>
+                    <Link to="/">Content 1</Link>
+                    <Link to="/content2">Content 2</Link>
+                </nav>
             </div>
         </>
-    )
+    );
 }
 
-export default Sidebar
+export default Sidebar;

@@ -1,27 +1,22 @@
-import './styles/base.css'
-import './styles/border.css'
+import './styles/base.css';
+import './styles/border.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Sidebar from './components/Sidebar/Sidebar'
-import Footer from './components/Footer/Footer'
-import Header from './components/Header/Header'
-import Content from './components/Content/Content'
+import Layout from './Layout';
+import Content from './components/Content/Content';
+import Content2 from './components/Content/Content2';
 
 function App() {
-
-  return (
-    <>
-      <div className="page">
-        <div className="top-container">
-          <Sidebar />
-          <div className="body-container">
-            <Header />
-            <Content />
-          </div>
-        </div>
-        <Footer />
-      </div>
-    </>
-  )
+    return (
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<Layout />}>
+                  <Route index element={<Content />} />
+                  <Route path='content2' element={<Content2 />} />
+              </Route>
+          </Routes>
+      </BrowserRouter>
+    )
 }
 
-export default App
+export default App;
