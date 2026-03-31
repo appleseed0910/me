@@ -6,10 +6,10 @@ function Sidebar() {
     return (
         <>
             <div className="sidebar">
-                <nav>
-                    <Link to="/">Content 1</Link>
-                    <Link to="/content2">Content 2</Link>
-                </nav>
+                <ul className="nav">
+                    <li><Link to="/">Content 1</Link></li>
+                    <li><Link to="/content2">Content 2</Link></li>
+                </ul>
             </div>
         </>
     );

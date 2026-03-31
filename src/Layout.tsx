@@ -9,14 +9,19 @@ function Layout() {
     return (
         <>
             <div className="page">
-
                 <div className="top-container">
-                    <aside className='hidden md:block' style={{'borderRight': '1px dashed black'}}>
+                    <aside
+                        className="hidden md:block"
+                        style={{ borderRight: '1px dashed black' }}
+                    >
                         <Sidebar />
                     </aside>
-    
+
                     <div className="body-container">
-                        <header className='block md:hidden' style={{'borderBottom': '1px solid black'}}>
+                        <header
+                            className="block md:hidden"
+                            style={{ borderBottom: '1px solid black' }}
+                        >
                             <Topbar />
                         </header>
                         <Header />
@@ -29,4 +34,4 @@ function Layout() {
     );
 }
 
-export default Layout
+export default Layout;
