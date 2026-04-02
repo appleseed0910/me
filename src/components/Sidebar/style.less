@@ -7,61 +7,69 @@
 
     .empty-cell {
         width: 1.4rem;
-        height: 1rem;
+        height: 1.6rem;
     }
 
-    .fox-container {
-        display: flex;
-        justify-content: end;
-        padding-right: .16rem;
+    .sticky-container {
+        position: sticky;
+        top: .3rem;
 
-        .icon {
-            width: 25.5px;
-            height: 25.5px;
-            background-image: url('../../assets/fox.png');
-            background-position: 0 0;
-            background-size: auto 25.5px;
-        }
 
-        .playing {
-            animation: play 0.8s steps(8);
-        }
+        .fox-container {
+            display: flex;
+            justify-content: end;
+            padding-right: .16rem;
 
-        @keyframes play {
-            from {
+            .icon {
+                width: 25.5px;
+                height: 25.5px;
+                background-image: url('../../assets/fox.png');
                 background-position: 0 0;
+                background-size: auto 25.5px;
             }
 
-            to {
-                background-position: -204px 0;
+            .playing {
+                animation: play 0.8s steps(8);
+            }
+
+            @keyframes play {
+                from {
+                    background-position: 0 0;
+                }
+
+                to {
+                    background-position: -204px 0;
+                }
+            }
+        }
+
+        .ul-container {
+            padding-right: .16rem;
+
+            .nav {
+                li {
+                    text-align: end;
+                }
+            }
+        }
+
+        .icon-container {
+            padding: 0 .16rem .1rem 0;
+            display: flex;
+            justify-content: end;
+            column-gap: .06rem;
+            margin-top: .16rem;
+            // align-items: end;
+            // flex: 1;
+
+            .github {
+                width: 89%;
+                padding-top: .01rem;
             }
         }
     }
 
-    .ul-container {
-        padding-right: .16rem;
 
-        .nav {
-            li {
-                text-align: end;
-            }
-        }
-    }
-
-    .icon-container {
-        padding: 0 .16rem .1rem 0;
-        display: flex;
-        justify-content: end;
-        column-gap: .06rem;
-        margin-top: .16rem;
-        // align-items: end;
-        // flex: 1;
-
-        .github {
-            width: 89%;
-            padding-top: .01rem;
-        }
-    }
 
 
 }

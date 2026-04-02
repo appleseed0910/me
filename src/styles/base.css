@@ -37,24 +37,9 @@
 
 html {
     font-size: 100px;
+    scrollbar-gutter: stable;
 }
 
 p {
     margin: 0;
-}
-
-.page {
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-
-    .top-container {
-        flex: 1;
-        display: flex;
-
-        .body-container {
-            flex: 1;
-        }
-    }
 }
