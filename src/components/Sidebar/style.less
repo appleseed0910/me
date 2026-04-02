@@ -1,6 +1,6 @@
 .sidebar {
     height: 100%;
-    font-size: .16rem;
+    font-size: .14rem;
     background-color: #fffaf5;
     display: flex;
     flex-direction: column;
@@ -44,6 +44,7 @@
         }
 
         .ul-container {
+            padding-top: .03rem;
             padding-right: .16rem;
 
             .nav {
@@ -51,6 +52,23 @@
                     text-align: end;
                 }
             }
+
+            .active a {
+                background-color: #b55322;
+                color: #FFF;
+                border-radius: .05rem;
+                padding: .01rem .05rem .02rem .12rem;
+                transition: all .3s ease-in-out;
+                box-shadow: 2px 1px 2px 2px rgba(153, 10, 10, 0.2);
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: '♯' ;
+                    left: 3px;
+                }
+            }
+
         }
 
         .icon-container {
@@ -68,8 +86,4 @@
             }
         }
     }
-
-
-
-
 }

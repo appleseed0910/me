@@ -6,11 +6,11 @@ import { useState } from 'react';
 
 
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Sidebar() {
+    const location = useLocation()
     const [ activeFox, setActiveFox ] = useState(false)
-
 
     return (
         <>
@@ -24,14 +24,25 @@ function Sidebar() {
                     </div>
 
                     <div className="ul-container">
-                        <ul className="nav">
+                        <ul className='nav'>
                             <li 
                                 onMouseEnter={() => {setActiveFox(true)}}
-                                onMouseLeave={() => {setActiveFox(false)}}>
-                                    <Link to="/">About</Link></li>
-                            <li><Link to="/projects">Projects</Link></li>
-                            <li><Link to="/experience">Experience</Link></li>
-                            <li><Link to="/education">Education</Link></li>
+                                onMouseLeave={() => {setActiveFox(false)}}
+                                className={location.pathname === '/' ? 'active' : ''}>
+                                    <Link to="/">About</Link>
+                            </li>
+                            <li
+                                className={location.pathname === '/projects' ? 'active' : ''}>
+                                <Link to="/projects">Projects</Link>
+                            </li>
+                            <li
+                                className={location.pathname === '/experience' ? 'active' : ''}>
+                                <Link to="/experience">Experience</Link>
+                            </li>
+                            <li
+                                className={location.pathname === '/education' ? 'active' : ''}>
+                                <Link to="/education">Education</Link>
+                            </li>
                         </ul>
                     </div>
                     
