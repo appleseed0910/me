@@ -6,7 +6,7 @@
     flex-direction: column;
 
     .empty-cell {
-        width: 1.6rem;
+        width: 1.4rem;
         height: 1rem;
     }
 
@@ -24,7 +24,7 @@
         }
 
         .playing {
-            animation: play 0.8s steps(8) infinite;
+            animation: play 0.8s steps(8);
         }
 
         @keyframes play {
@@ -52,16 +52,14 @@
         padding: 0 .16rem .1rem 0;
         display: flex;
         justify-content: end;
+        column-gap: .06rem;
         margin-top: .16rem;
         // align-items: end;
         // flex: 1;
 
-        svg {
-            margin-left: .1rem;
-        }
-
         .github {
-            margin-bottom: .01rem;
+            width: 89%;
+            padding-top: .01rem;
         }
     }
 
