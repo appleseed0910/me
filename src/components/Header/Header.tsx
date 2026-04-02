@@ -4,7 +4,7 @@ import Typed from 'typed.js'
 import './style.less'
 
 const headerText = 'Hi, it\'s <strong>Xinyi</strong> here.^700 I\'m a __'
-const slogans = ['full-stack developer', 'certified scrum master', 'curious advanturer','React padawan', 'web designer', 'AI apprentice', 'Nodejs rookie', 'licensed mobile suit pilot', 'fan-fiction writer', 'SAP UI5 veteran', 'rain people', 'kitty guru', 'Docker a bit']
+const slogans = ['true lazy fox, pseudo human bean', 'full-stack developer', 'certified scrum master', 'curious advanturer','React padawan', 'web designer', 'AI apprentice', 'Nodejs rookie', 'licensed mobile suit pilot', 'fan-fiction writer', 'SAP UI5 veteran', 'rain people', 'kitty guru', 'Docker a bit']
 
 function Header() {
     const title = useRef(null)
