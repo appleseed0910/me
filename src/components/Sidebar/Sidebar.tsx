@@ -2,15 +2,15 @@ import './style.less';
 
 import githubUrl from '../../assets/github-circle.svg'
 import mailUrl from '../../assets/send-mail.svg'
+import { ListArr } from './listArr';
+
 import { useState } from 'react';
-
-
-
 import { Link, useLocation } from 'react-router-dom';
 
 function Sidebar() {
     const location = useLocation()
-    const [ activeFox, setActiveFox ] = useState(false)
+    const [ fox, setFox ] = useState('default')
+
 
     return (
         <>
@@ -20,29 +20,22 @@ function Sidebar() {
 
                 <div className="sticky-container">
                     <div className="fox-container">
-                        <div className={`icon ${activeFox ? 'playing' : ''}`}></div>
+                        <div className={fox === '' ? 'default' : `${fox} ${fox}-playing`}></div>
                     </div>
 
                     <div className="ul-container">
                         <ul className='nav'>
-                            <li 
-                                onMouseEnter={() => {setActiveFox(true)}}
-                                onMouseLeave={() => {setActiveFox(false)}}
-                                className={location.pathname === '/' ? 'active' : ''}>
-                                    <Link to="/">About</Link>
-                            </li>
-                            <li
-                                className={location.pathname === '/projects' ? 'active' : ''}>
-                                <Link to="/projects">Projects</Link>
-                            </li>
-                            <li
-                                className={location.pathname === '/experience' ? 'active' : ''}>
-                                <Link to="/experience">Experience</Link>
-                            </li>
-                            <li
-                                className={location.pathname === '/education' ? 'active' : ''}>
-                                <Link to="/education">Education</Link>
-                            </li>
+                            {ListArr.map((item, idx) => {
+                                return (
+                                    <li
+                                        key={idx}
+                                        onMouseEnter={() => {setFox(item.fox)}}
+                                        onMouseLeave={() => {setFox('')}}
+                                        className={location.pathname === item.path ? 'active' : ''}>
+                                        <Link to={item.path}>{item.label}</Link>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
                     

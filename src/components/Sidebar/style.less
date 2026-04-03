@@ -13,38 +13,96 @@
     .sticky-container {
         position: sticky;
         top: .3rem;
+        display: flex;
+        flex-direction: column;
 
 
         .fox-container {
+            width: 100%;
             display: flex;
             justify-content: end;
-            padding-right: .16rem;
 
-            .icon {
-                width: 25.5px;
-                height: 25.5px;
-                background-image: url('../../assets/fox.png');
+            .default {
+                width: .6rem;
+                height: .6rem;
+                background-image: url('../../assets/fox/fox_default.png');
                 background-position: 0 0;
-                background-size: auto 25.5px;
-            }
+                background-size: auto .6rem;
 
-            .playing {
-                animation: play 0.8s steps(8);
-            }
-
-            @keyframes play {
-                from {
-                    background-position: 0 0;
+                &-playing {
+                    animation: play-default 0.8s steps(8);
                 }
 
-                to {
-                    background-position: -204px 0;
+                @keyframes play-default {
+                    from {
+                        background-position: 0 0;
+                    }
+
+                    to {
+                        background-position: -4.8rem 0;
+                    }
                 }
             }
+
+            .bingo {
+                width: .6rem;
+                height: .6rem;
+                background-image: url('../../assets/fox/fox_bingo.png');
+                background-position: 0 0;
+                background-size: auto .6rem;
+
+                &-playing {
+                    animation: play-bingo 1.2s steps(12);
+                }
+
+                @keyframes play-bingo {
+                    from {
+                        background-position: 0 0;
+                    }
+
+                    to {
+                        background-position: -7.2rem 0;
+                    }
+                }
+            }
+
+            .sleep {
+                width: .6rem;
+                height: .6rem;
+                background-image: url('../../assets/fox/fox_sleep.png');
+                background-position: 0 0;
+                background-size: auto .6rem;
+
+                &-playing {
+                    animation: play-sleep 1.4s steps(14);
+                }
+
+                @keyframes play-sleep {
+                    from {
+                        background-position: 0 0;
+                    }
+
+                    to {
+                        background-position: -8.4rem 0;
+                    }
+                }
+            }
+
+            .yawn {
+                width: .6rem;
+                height: .6rem;
+                background-image: url('../../assets/fox/fox_yawn.png');
+                background-position: 0 0;
+                background-size: auto .6rem;
+
+                &-playing {
+                    animation: play-bingo 1.2s steps(12);
+                }
+            }
+
         }
 
         .ul-container {
-            padding-top: .03rem;
             padding-right: .16rem;
 
             .nav {
@@ -64,7 +122,7 @@
 
                 &::before {
                     position: absolute;
-                    content: '♯' ;
+                    content: '♯';
                     left: 3px;
                 }
             }
