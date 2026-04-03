@@ -1,19 +1,20 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
-  font-family: 'Figtree';
-  src: url('../assets/fonts/Figtree-VariableFont_wght.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Figtree';
+    src: url('../assets/fonts/Figtree-VariableFont_wght.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Figtree';
-  src: url('../assets/fonts/Figtree-Italic-VariableFont_wght.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+    font-family: 'Figtree';
+    src: url('../assets/fonts/Figtree-Italic-VariableFont_wght.woff2')
+        format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
 }
 
 /* 
@@ -34,8 +35,6 @@
 
 */
 
-
-
 * {
     margin: 0;
     padding: 0;
@@ -44,8 +43,19 @@
 
 html {
     font-size: 100px;
-    scrollbar-gutter: stable;
+    /* scrollbar-gutter: stable; */
+    height: 100%;
+
+    body,
+    #root {
+        height: 100%;
+    }
 }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #999; }
 
 p {
     margin: 0;

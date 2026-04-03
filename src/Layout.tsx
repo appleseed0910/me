@@ -7,9 +7,11 @@ import ScrollTopBtn from './utils/ScrollTopBtn/ScrollTopBtn';
 
 import './styles/layout.less'
 
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 function Layout() {
+    const location = useLocation()
+
     return (
         <>
             <div className="page">
@@ -29,7 +31,7 @@ function Layout() {
                             <Topbar />
                         </header>
                         <Header />
-                        <Outlet />
+                        <Outlet key={location.pathname}/>
                     </div>
                 </div>
 
