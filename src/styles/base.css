@@ -52,10 +52,10 @@ html {
     }
 }
 
-::-webkit-scrollbar { width: 4px; }
+/* ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: #999; }
+::-webkit-scrollbar-thumb:hover { background: #999; } */
 
 p {
     margin: 0;

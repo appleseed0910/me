@@ -1,5 +1,7 @@
 import './style.less'
 
+import { about_paras } from './about-content'
+
 
 function About() {
 
@@ -9,16 +11,7 @@ function About() {
                 <h6 className='about-page-title'>Who I am ...</h6>
 
                 <div className="about-page-content">
-                    <ul>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                    </ul>
+                    {about_paras}
                 </div>
 
             </section>
