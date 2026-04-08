@@ -29,6 +29,7 @@ function Header() {
             backSpeed: 20,
             contentType: 'html',
             showCursor: false,
+            loop: true,
             loopCount: 2,
             shuffle: true,
             startDelay: 3500,

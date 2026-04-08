@@ -1,5 +1,6 @@
 import './style.less';
 import { skillData } from './skill-data';
+import CardStack from './CardsStack';
 
 function Skills() {
     return (
@@ -40,11 +41,11 @@ function Skills() {
                             })}
                         </div>
 
-                        <div className='comment'>The list still keeps loading...</div>
+                        <div className='comment'>The list will always keeps loading more...</div>
                     </article>
 
-                    <article className="chars-container md:w-2/3 w-full">
-                        2
+                    <article className="charts-container md:w-2/3 w-full">
+                        <CardStack />
                     </article>
                 </div>
             </section>
