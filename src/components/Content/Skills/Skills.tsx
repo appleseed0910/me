@@ -1,11 +1,11 @@
 import './style.less'
 
-function Education() {
+function Skills() {
 
     return (
         <>
             <section className='edu-page'>
-                <h6 className='edu-page-title'>Years shaped me, </h6>
+                <h6 className='edu-page-title'>I am good at: </h6>
 
                 <div className="edu-page-content">
                     <ul>
@@ -25,4 +25,4 @@ function Education() {
     )
 }
 
-export default Education
+export default Skills

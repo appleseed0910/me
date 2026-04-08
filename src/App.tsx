@@ -9,7 +9,7 @@ import Layout from './Layout';
 import About from './components/Content/About/About';
 import Projects from './components/Content/Projects/Projects';
 import Experience from './components/Content/Experience/Experience';
-import Education from './components/Content/Education/Education';
+import Skills from './components/Content/Skills/Skills';
 
 function App() {
     return (
@@ -17,9 +17,9 @@ function App() {
           <Routes>
               <Route path="/" element={<Layout />}>
                   <Route index element={<About />} />
+                  <Route path='skills' element={<Skills />} />
                   <Route path='projects' element={<Projects />} />
                   <Route path='experience' element={<Experience />} />
-                  <Route path='education' element={<Education />} />
               </Route>
           </Routes>
       </BrowserRouter>

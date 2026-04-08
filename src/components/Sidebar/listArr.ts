@@ -1,6 +1,6 @@
 type SidebarListItem = Array<{
-    label: 'About' | 'Projects' | 'Experience' | 'Education',
-    path: '/' | '/projects' | '/experience' | '/education',
+    label: 'About' | 'Projects' | 'Experience' | 'Skills',
+    path: '/' | '/projects' | '/experience' | '/skills',
     fox: 'default' | 'bingo' | 'sleep' | 'yawn'
 }>
 
@@ -12,6 +12,11 @@ export const ListArr: SidebarListItem = [
         fox: 'default'
     },
     {
+        label: 'Skills',
+        path: '/skills',
+        fox: 'yawn'
+    },
+    {
         label: 'Projects',
         path: '/projects',
         fox: 'bingo'
@@ -20,10 +25,5 @@ export const ListArr: SidebarListItem = [
         label: 'Experience',
         path: '/experience',
         fox: 'sleep'
-    },
-    {
-        label: 'Education',
-        path: '/education',
-        fox: 'yawn'
     }
 ]
