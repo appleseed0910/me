@@ -11,7 +11,9 @@ function About() {
                 <h6 className='about-page-title'>Who I am ...</h6>
 
                 <div className="about-page-content">
-                    {about_paras}
+                    {about_paras.map((item, idx) => {
+                        return <div key={idx}>{item}</div>
+                    })}
                 </div>
 
             </section>

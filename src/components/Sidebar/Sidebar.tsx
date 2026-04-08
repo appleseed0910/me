@@ -2,6 +2,7 @@ import './style.less';
 
 import githubUrl from '../../assets/github-circle.svg'
 import mailUrl from '../../assets/send-mail.svg'
+import linkedin from '../../assets/linkedin.svg'
 import { ListArr } from './listArr';
 
 import { useState } from 'react';
@@ -40,12 +41,17 @@ function Sidebar() {
                     </div>
                     
                     <div className="icon-container">
-                        <Link to='mailto:appleseed0910@gmail.com'>
-                            <img className='mail' src={mailUrl} alt="Send mail to me!" />
+                        <Link to='https://www.linkedin.com/in/xinyi-hu-a95282127'>
+                            <img className='linkedin' src={linkedin} alt="linkedin page" />
                         </Link>
                         <Link to='https://github.com/appleseed0910'>
                             <img className='github' src={githubUrl} alt='github page' />
                         </Link>
+                        <Link to='mailto:appleseed0910@gmail.com'>
+                            <img className='mail' src={mailUrl} alt="Send mail to me!" />
+                        </Link>
+                        
+                        
                     </div>
                 </div>
 
