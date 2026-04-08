@@ -8,7 +8,7 @@ function Skills() {
                 <h6 className="skill-page-title">I am good at: </h6>
 
                 <div className="skill-page-content flex flex-col md:flex-row">
-                    <article className="tags-container md:w-2/5 w-full">
+                    <article className="tags-container md:w-1/3 w-full">
 
                         <div className="fr-tags-container">
                             {skillData.frontend.map((item, idx) => {
@@ -39,9 +39,11 @@ function Skills() {
                                 );
                             })}
                         </div>
+
+                        <div className='comment'>The list still keeps loading...</div>
                     </article>
 
-                    <article className="chars-container md:w-3/5 w-full">
+                    <article className="chars-container md:w-2/3 w-full">
                         2
                     </article>
                 </div>

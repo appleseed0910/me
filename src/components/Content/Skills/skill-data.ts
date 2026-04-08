@@ -9,8 +9,8 @@ export const skillData : {
     frontend: skillTags, backend: skillTags, commu: skillTags
 } = {
     frontend: [
-        { name: 'React', weight: 85 },
         { name: 'SAP UI5', weight: 100},
+        { name: 'React', weight: 85 },
         { name: 'Sencha Ext js', weight: 60},
         { name: 'Tailwind', weight: 35 },
         { name: 'Typescript', weight: 95 },
