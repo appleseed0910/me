@@ -1,7 +1,7 @@
-.edu-page {
+.skill-page {
     animation: fadeIn 1s ease;
     margin: 0 .3rem 0 .3rem;
-    border: 1px solid #42d927;
+    border: 1px solid #25cc1d;
     border-bottom: none;
     flex: 1;
     position: relative;
@@ -9,7 +9,7 @@
     &-title {
         font-size: .18rem;
         background-color: white;
-        color: #42d927;
+        color: #25cc1d;
         position: absolute;
         top: -.12rem;
         left: .4rem;
@@ -20,5 +20,46 @@
     &-content {
         font-size: .16rem;
         padding: .5rem .3rem 0 .3rem;
+
+        .tags-container {
+
+            .fr-tags-container,
+            .br-tags-container,
+            .cm-tags-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: .06rem;
+                margin-bottom: .1rem;
+            }
+        }
+
+        .tag {
+            padding: 0 .07rem;
+            font-size: .12rem;
+            border-radius: .1rem;
+            border: 1px solid;
+
+            &-fr {
+                color: #875207;
+                border-color: rgba(222, 184, 135, 0.854);
+                background-color: #fffaf2;
+            }
+
+            &-br {
+                color: #7d7b09;
+                border-color: #eded2c;
+                background-color: #fffff5;
+            }
+
+            &-cm {
+                color: #4e4e4e;
+                border-color: #a2a2a2;
+                background-color: #f9f9f9b7;
+            }
+        }
+
+        .test {
+                    font-size: 1px;
+                }
     }
 }
