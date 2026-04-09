@@ -9,7 +9,7 @@ function Skills() {
                 <h6 className="skill-page-title">I am good at: </h6>
 
                 <div className="skill-page-content flex flex-col md:flex-row">
-                    <article className="tags-container md:w-1/3 w-full">
+                    <article className="tags-container md:w-1/3 w-full ">
 
                         <div className="fr-tags-container">
                             {skillData.frontend.map((item, idx) => {
