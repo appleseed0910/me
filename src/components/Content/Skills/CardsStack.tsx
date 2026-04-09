@@ -1,8 +1,9 @@
 import { useState } from "react";
+import Frontend from "./charts/frontend";
 
 const initialCards = [
-    { id: "a", content: <div><ul><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li></ul></div> },
-    { id: "b", content: <div><ul><li>B</li><li>B</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li></ul></div> },
+    { id: "a", content:  <Frontend />},
+    { id: "b", content: <Frontend /> },
     { id: "c", content: <div><ul><li>C</li><li>C</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li></ul></div> },
 ];
 
