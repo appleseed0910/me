@@ -1,9 +1,24 @@
-import { useState } from "react";
-import Frontend from "./charts/frontend";
+import { useState, useEffect } from "react";
+import Frontend from "./charts/Frontend";
+import Backend from "./charts/Backend";
 
-const initialCards = [
-    { id: "a", content:  <Frontend />},
-    { id: "b", content: <Frontend /> },
+type CardContent = React.ReactNode;
+
+interface Card {
+    id: string;
+    content: CardContent;
+}
+
+interface CardStackProps {
+    registerDispatcher?: (chartType: 'frontend' | 'backend', dispatcher: (action: any) => void) => void;
+    onActiveCardChange?: (cardId: string) => void;
+}
+
+const createInitialCards = (
+    registerDispatcher?: (chartType: 'frontend' | 'backend', dispatcher: (action: any) => void) => void
+): Card[] => [
+    { id: "a", content:  <Frontend chartType="frontend" registerDispatcher={registerDispatcher} />},
+    { id: "b", content: <Backend chartType="backend" registerDispatcher={registerDispatcher} /> },
     { id: "c", content: <div><ul><li>C</li><li>C</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li></ul></div> },
 ];
 
@@ -20,8 +35,8 @@ const dismissStyle = {
     pointerEvents: "none" as const,
 };
 
-export default function CardStack() {
-    const [cards, setCards] = useState(initialCards);
+export default function CardStack({ registerDispatcher, onActiveCardChange }: CardStackProps) {
+    const [cards, setCards] = useState(() => createInitialCards(registerDispatcher));
     const [dismissing, setDismissing] = useState(false);
 
     const handleClick = () => {
@@ -33,9 +48,23 @@ export default function CardStack() {
         if (!dismissing) return;
         if (e.propertyName !== "transform") return;
 
-        setCards((prev) => [...prev.slice(1), prev[0]]);
+        setCards((prev) => {
+            const newCards = [...prev.slice(1), prev[0]];
+            // Notify parent about active card change
+            if (onActiveCardChange) {
+                onActiveCardChange(newCards[0].id);
+            }
+            return newCards;
+        });
         setDismissing(false);
     };
+
+    // Notify initial active card
+    useEffect(() => {
+        if (onActiveCardChange && cards.length > 0) {
+            onActiveCardChange(cards[0].id);
+        }
+    }, []);
 
     const getCardStyle = (i: number) => {
         if (!dismissing) return stackStyles[i];

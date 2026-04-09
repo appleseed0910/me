@@ -3,26 +3,26 @@ import { useEffect, useRef } from 'react';
 import { skillData, ranges } from '../skill-data';
 import type { DispatchProps } from '../skill-data.ts'
 
-function Frontend({ chartType = 'frontend', registerDispatcher }: DispatchProps) {
-    const feChartRef = useRef<HTMLDivElement>(null);
+function Backend({ chartType = 'backend', registerDispatcher }: DispatchProps) {
+    const bkChartRef = useRef<HTMLDivElement>(null);
     const chartInstanceRef = useRef<echarts.ECharts | null>(null);
 
     let series = [
         {
-            data: skillData.frontend.map(item => item.weight),
+            data: skillData.backend.map(item => item.weight),
             type: 'bar',
             stack: 'a',
             name: 'a',
-            barWidth: 12,
+            barWidth: 20,
             itemStyle: {
-                color: 'rgba(255, 248, 239, 0.8)',
-                borderColor: '#a8681e',
+                color: 'rgba(248, 255, 235, 0.8)',
+                borderColor: '#9cd53a',
                 borderRadius: [0, 16, 16, 0]
             },
             emphasis: {
                 itemStyle: {
-                    color: '#a8681e',
-                    borderColor: '#a8681e'
+                    color: '#4e7a06',
+                    borderColor: '#4e7a06'
                 }
             }
         }
@@ -54,7 +54,7 @@ function Frontend({ chartType = 'frontend', registerDispatcher }: DispatchProps)
         yAxis: {
             type: 'category',
             inverse: true,
-            data: skillData.frontend.map(item => item.name),
+            data: skillData.backend.map(item => item.name),
             axisLine: { show: false },
             axisTick: { show: false },
             axisLabel: {
@@ -67,9 +67,9 @@ function Frontend({ chartType = 'frontend', registerDispatcher }: DispatchProps)
     };
 
     useEffect(() => {
-        if (feChartRef.current) {
+        if (bkChartRef.current) {
             if (!chartInstanceRef.current) {
-                chartInstanceRef.current = echarts.init(feChartRef.current);
+                chartInstanceRef.current = echarts.init(bkChartRef.current);
             }
             chartInstanceRef.current.setOption(option, { notMerge: true });
 
@@ -98,8 +98,8 @@ function Frontend({ chartType = 'frontend', registerDispatcher }: DispatchProps)
     }, []);
 
     return (
-        <div className="chart" ref={feChartRef}></div>
+        <div className="chart" ref={bkChartRef}></div>
     );
 }
 
-export default Frontend;
+export default Backend;

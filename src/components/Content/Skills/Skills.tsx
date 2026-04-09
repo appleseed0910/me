@@ -1,8 +1,44 @@
 import './style.less';
+import { useState, useCallback } from 'react';
 import { skillData } from './skill-data';
 import CardStack from './CardsStack';
 
 function Skills() {
+    const [dispatchers, setDispatchers] = useState<{
+        frontend?: ((action: any) => void);
+        backend?: ((action: any) => void);
+    }>({});
+    const [activeCardId, setActiveCardId] = useState<string>('a');
+
+    // Map card IDs to chart types
+    const cardToChartType: Record<string, 'frontend' | 'backend'> = {
+        'a': 'frontend',
+        'b': 'backend',
+        'c': 'frontend' // fallback
+    };
+
+    const registerDispatcher = useCallback((chartType: 'frontend' | 'backend', dispatcher: (action: any) => void) => {
+        setDispatchers(prev => ({
+            ...prev,
+            [chartType]: dispatcher
+        }));
+    }, []);
+
+    const toggleBar = useCallback((idx: number, toggle: 'highlight' | 'downplay', chartType?: 'frontend' | 'backend') => {
+        // If chartType is provided, use it; otherwise use active card's chart type
+        const targetChartType = chartType || cardToChartType[activeCardId];
+        const dispatcher = dispatchers[targetChartType];
+
+        if (dispatcher) {
+            dispatcher({
+                type: toggle,
+                seriesIndex: 0,
+                dataIndex: idx
+            });
+        }
+    }, [dispatchers, activeCardId]);
+
+
     return (
         <>
             <section className="skill-page">
@@ -14,7 +50,11 @@ function Skills() {
                         <div className="fr-tags-container">
                             {skillData.frontend.map((item, idx) => {
                                 return (
-                                    <div key={idx} className="tag tag-fr">
+                                    <div 
+                                        key={idx} 
+                                        className="tag tag-fr" 
+                                        onMouseEnter={() => {toggleBar(idx, 'highlight')}}
+                                        onMouseLeave={() => {toggleBar(idx, 'downplay')}}>
                                         {item.name}
                                     </div>
                                 );
@@ -24,7 +64,11 @@ function Skills() {
                         <div className="br-tags-container">
                             {skillData.backend.map((item, idx) => {
                                 return (
-                                    <div key={idx} className="tag tag-br">
+                                    <div
+                                        key={idx}
+                                        className="tag tag-br"
+                                        onMouseEnter={() => {toggleBar(idx, 'highlight', 'backend')}}
+                                        onMouseLeave={() => {toggleBar(idx, 'downplay', 'backend')}}>
                                         {item.name}
                                     </div>
                                 );
@@ -56,7 +100,10 @@ function Skills() {
                     </article>
 
                     <article className="charts-container md:w-2/3 w-full">
-                        <CardStack />
+                        <CardStack
+                            registerDispatcher={registerDispatcher}
+                            onActiveCardChange={setActiveCardId}
+                        />
                     </article>
                 </div>
             </section>
