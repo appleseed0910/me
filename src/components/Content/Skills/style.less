@@ -5,7 +5,6 @@
     border-bottom: none;
     flex: 1;
     position: relative;
-    
 
     &-title {
         font-size: .18rem;
@@ -86,8 +85,55 @@
 
             .comment {
                 font-size: .12rem;
-                font-style: italic;
-                margin-bottom: .2rem;
+                margin-bottom: .5rem;
+
+                .exploring {
+                    margin-top: .1rem;
+
+                    span {
+                        position: relative;
+                        cursor: default;
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            inset: 0;
+                            z-index: -1;
+                            border-radius: 3px 5px 3px 5px;
+                            clip-path: inset(0 100% 0 0);
+                            transition: clip-path 0.3s ease;
+                            background:
+                                conic-gradient(at 0 100%, rgb(var(--mark-color) / 100%) 1%, #fff0 3%) no-repeat 0 0 / auto 120%,
+                                conic-gradient(from 180deg at 100% 0, #fff0, rgb(var(--mark-color) / 100%) 1%, #fff0 4%) no-repeat 100% 100% / auto 120%,
+                                linear-gradient(var(--mark-bg-angle), rgb(var(--mark-color) / 60%), rgb(var(--mark-color) / 20%) 75%, rgb(var(--mark-color) / 55%)) no-repeat center / auto;
+
+                        }
+
+                        &:hover:before {
+                            clip-path: inset(0 0 0 0);
+                        }
+                    }
+
+                    .mark-fox {
+                        &:before {
+                            rotate: 1deg;
+                            scale: 1.1;
+                            transform: skew(-5deg);
+                            --mark-color: 247 155 42; //#f79b2a
+                            --mark-bg-angle: -50deg;
+                        }
+                    }
+
+                    .mark-grass {
+                        &:before {
+                            rotate: 1deg;
+                            scale: 1.1;
+                            transform: skew(-5deg);
+                            --mark-color: 152 232 60; //#98e83c
+                            --mark-bg-angle: 60deg;
+                        }
+                    }
+                }
             }
         }
 

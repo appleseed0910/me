@@ -41,7 +41,18 @@ function Skills() {
                             })}
                         </div>
 
-                        <div className='comment'>The list will always keeps loading more...</div>
+                        <div className='comment'>
+                            <p>The list will always keeps loading more...</p>
+                            <p>Currently, I'm exploring/playing with:</p>
+                            <ul className='exploring'>
+                                <li><span className='mark-fox'>[&nbsp;&nbsp;&nbsp;Fiber&nbsp;&nbsp;&nbsp;]</span></li>
+                                <li><span className='mark-grass'>[&nbsp;&nbsp;&nbsp;AWS&nbsp;&nbsp;&nbsp;]</span></li>
+                                <li><span className='mark-fox'>[&nbsp;&nbsp;&nbsp;Electron&nbsp;&nbsp;&nbsp;]</span></li>
+                                <li><span className='mark-grass'>[&nbsp;&nbsp;&nbsp;Automation&nbsp;&nbsp;&nbsp;]</span></li>
+                            </ul>
+                        </div>
+
+
                     </article>
 
                     <article className="charts-container md:w-2/3 w-full">

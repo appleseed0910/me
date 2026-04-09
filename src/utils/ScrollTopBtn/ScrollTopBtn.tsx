@@ -8,7 +8,7 @@ function ScrollTopBtn () {
 
     useEffect(() => {
         const handleScroll = () => {
-            window.scrollY > 150 ? setShow(true) : setShow(false)
+            window.scrollY > 50 ? setShow(true) : setShow(false)
         }
 
         window.addEventListener("scroll", handleScroll)
