@@ -44,6 +44,6 @@ export const ranges = [
 ]
 
 export interface DispatchProps {
-    chartType?: 'frontend' | 'backend';
-    registerDispatcher?: (chartType: 'frontend' | 'backend', dispatcher: (action: any) => void) => void;
+    chartType?: 'frontend' | 'backend' | 'commu';
+    registerDispatcher?: (chartType: 'frontend' | 'backend' | 'commu', dispatcher: (action: any) => void) => void;
 }

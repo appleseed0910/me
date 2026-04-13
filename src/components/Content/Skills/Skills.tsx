@@ -7,24 +7,26 @@ function Skills() {
     const [dispatchers, setDispatchers] = useState<{
         frontend?: ((action: any) => void);
         backend?: ((action: any) => void);
+        commu?: ((action: any) => void);
     }>({});
     const [activeCardId, setActiveCardId] = useState<string>('a');
 
     // Map card IDs to chart types
-    const cardToChartType: Record<string, 'frontend' | 'backend'> = {
+    const cardToChartType: Record<string, 'frontend' | 'backend' | 'commu'> = {
         'a': 'frontend',
         'b': 'backend',
-        'c': 'frontend' // fallback
+        'c': 'commu',
+        'd': 'frontend'
     };
 
-    const registerDispatcher = useCallback((chartType: 'frontend' | 'backend', dispatcher: (action: any) => void) => {
+    const registerDispatcher = useCallback((chartType: 'frontend' | 'backend' | 'commu', dispatcher: (action: any) => void) => {
         setDispatchers(prev => ({
             ...prev,
             [chartType]: dispatcher
         }));
     }, []);
 
-    const toggleBar = useCallback((idx: number, toggle: 'highlight' | 'downplay', chartType?: 'frontend' | 'backend') => {
+    const toggleBar = useCallback((idx: number, toggle: 'highlight' | 'downplay', chartType?: 'frontend' | 'backend' | 'commu') => {
         // If chartType is provided, use it; otherwise use active card's chart type
         const targetChartType = chartType || cardToChartType[activeCardId];
         const dispatcher = dispatchers[targetChartType];

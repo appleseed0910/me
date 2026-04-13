@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Frontend from "./charts/Frontend";
 import Backend from "./charts/Backend";
+import Commu from "./charts/Commu";
 
 type CardContent = React.ReactNode;
 
@@ -10,16 +11,16 @@ interface Card {
 }
 
 interface CardStackProps {
-    registerDispatcher?: (chartType: 'frontend' | 'backend', dispatcher: (action: any) => void) => void;
+    registerDispatcher?: (chartType: 'frontend' | 'backend' | 'commu', dispatcher: (action: any) => void) => void;
     onActiveCardChange?: (cardId: string) => void;
 }
 
 const createInitialCards = (
-    registerDispatcher?: (chartType: 'frontend' | 'backend', dispatcher: (action: any) => void) => void
+    registerDispatcher?: (chartType: 'frontend' | 'backend' | 'commu', dispatcher: (action: any) => void) => void
 ): Card[] => [
-    { id: "a", content:  <Frontend chartType="frontend" registerDispatcher={registerDispatcher} />},
+    { id: "a", content: <Frontend chartType="frontend" registerDispatcher={registerDispatcher} />},
     { id: "b", content: <Backend chartType="backend" registerDispatcher={registerDispatcher} /> },
-    { id: "c", content: <div><ul><li>C</li><li>C</li><li>A</li><li>A</li><li>A</li><li>A</li><li>A</li></ul></div> },
+    { id: "c", content: <Commu chartType="commu" registerDispatcher={registerDispatcher} />},
 ];
 
 const stackStyles = [
@@ -50,21 +51,17 @@ export default function CardStack({ registerDispatcher, onActiveCardChange }: Ca
 
         setCards((prev) => {
             const newCards = [...prev.slice(1), prev[0]];
-            // Notify parent about active card change
-            if (onActiveCardChange) {
-                onActiveCardChange(newCards[0].id);
-            }
             return newCards;
         });
         setDismissing(false);
     };
 
-    // Notify initial active card
+    // Notify parent when active card changes
     useEffect(() => {
         if (onActiveCardChange && cards.length > 0) {
             onActiveCardChange(cards[0].id);
         }
-    }, []);
+    }, [cards, onActiveCardChange]);
 
     const getCardStyle = (i: number) => {
         if (!dismissing) return stackStyles[i];
