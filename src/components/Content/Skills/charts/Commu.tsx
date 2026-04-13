@@ -45,8 +45,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
         };
 
         const observer = new ResizeObserver((entries) => {
-            const { width } = entries[0].contentRect;
-            const height = width * 0.5;
+            const { width, height } = entries[0].contentRect;
             if (width > 0 && height > 0) {
                 observer.disconnect();
                 initMatter(container, width, height)
@@ -76,7 +75,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
         };
     }, []);
 
-    return <div ref={commuRef}></div>;
+    return <div ref={commuRef} style={{ width: '100%', height: 'min(55vh, 500px)' }}></div>;
 }
 
 export default Commu;

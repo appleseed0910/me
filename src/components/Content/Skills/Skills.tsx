@@ -40,6 +40,11 @@ function Skills() {
         }
     }, [dispatchers, activeCardId]);
 
+    const placeholder = () => {
+        console.log('remember to add click switch card func');
+        // activeCardId
+    }
+
 
     return (
         <>
@@ -56,7 +61,8 @@ function Skills() {
                                         key={idx} 
                                         className="tag tag-fr" 
                                         onMouseEnter={() => {toggleBar(idx, 'highlight')}}
-                                        onMouseLeave={() => {toggleBar(idx, 'downplay')}}>
+                                        onMouseLeave={() => {toggleBar(idx, 'downplay')}}
+                                        onClick={() => {placeholder()}}> 
                                         {item.name}
                                     </div>
                                 );
