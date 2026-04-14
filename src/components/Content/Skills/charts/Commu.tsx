@@ -4,6 +4,29 @@ import { Render, Engine, Bodies, Runner, World, Composite, Mouse, MouseConstrain
 import { skillData, ranges } from '../skill-data';
 import type { DispatchProps } from '../skill-data.ts';
 
+const getGrounds = (canvasWidth: number, canvasHeight: number) => { 
+    const thickness = 16;
+    const position: Record<string, [number, number, number, number]> = {
+        top: [canvasWidth / 2, thickness / 2, canvasWidth, thickness],
+        right: [canvasWidth - thickness / 2, canvasHeight / 2,  thickness , canvasHeight],
+        bottom: [canvasWidth / 2, canvasHeight - thickness / 2, canvasWidth, thickness],
+        left: [thickness / 2, canvasHeight / 2, thickness, canvasHeight]
+    };
+    const options = {
+        isStatic: true,
+        render: {
+            fillStyle: '#fffaf2',
+            strokeStyle: '#deb887',
+            lineWidth: 2,
+            opacity: 0.5
+        }
+    }
+
+    return Object.values(position).map(edge  => {
+        return Bodies.rectangle(...edge, options)
+    })
+}
+
 function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
     const commuRef = useRef<HTMLDivElement>(null);
     const engineRef = useRef<Engine | null>(null);
@@ -24,16 +47,14 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                     options: {
                         width: width,
                         height: height,
-                        background: '#f2ece4',
+                        background: '#fff',
                         wireframes: false
                     },
                 });
                 renderRef.current = render;
 
                 const mouse = Mouse.create(render.canvas)
-
                 let mousePos = { x: -9999, y: -9999 };1
-
                 // 每帧施加斥力
                 Events.on(engine, 'beforeUpdate', () => {
                     const bodies = Composite.allBodies(engine.world);
@@ -58,7 +79,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                         }
                     }
                 });
-
+                // 给每个bodies 加上_label
                 Events.on(render, 'afterRender', () => {
                     const ctx = render.context;
                     const bodies = Composite.allBodies(engine.world);
@@ -82,7 +103,9 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                     });
                 });
 
-                let ground = Bodies.rectangle(300, 280, 600, 30, {isStatic: true});
+                // gen boundaries
+                const grounds = getGrounds(width, height)
+                // gen skill sprite
                 let box = Bodies.rectangle(200, 10, 20, 20, { frictionAir: 0.08 });
                 box._label = 'box';
                 let cir = Bodies.circle(240, 20, 30, { 
@@ -96,7 +119,8 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                 })
                 cir._label = 'cir';
 
-                Composite.add(engine.world, [ground, box, cir]);
+                // load boundaries, skill sprites
+                Composite.add(engine.world, [...grounds, box, cir]);
                 Render.run(render);
 
                 render.canvas.addEventListener('mousemove', (e) => {
@@ -106,7 +130,6 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                         y: e.clientY - rect.top
                     }
                 })
-
                 render.canvas.addEventListener('mouseleave', () => {
                     mousePos = { x: -9999, y: -9999 }
                 })
