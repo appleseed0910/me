@@ -18,9 +18,10 @@ interface CardStackProps {
 const createInitialCards = (
     registerDispatcher?: (chartType: 'frontend' | 'backend' | 'commu', dispatcher: (action: any) => void) => void
 ): Card[] => [
+    { id: "c", content: <Commu chartType="commu" registerDispatcher={registerDispatcher} />},
     { id: "a", content: <Frontend chartType="frontend" registerDispatcher={registerDispatcher} />},
     { id: "b", content: <Backend chartType="backend" registerDispatcher={registerDispatcher} /> },
-    { id: "c", content: <Commu chartType="commu" registerDispatcher={registerDispatcher} />},
+    
 ];
 
 const stackStyles = [

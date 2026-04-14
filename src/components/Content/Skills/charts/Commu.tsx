@@ -1,23 +1,24 @@
 import { useEffect, useRef } from 'react';
-import * as Matter from 'matter-js';
+// import * as Matter from 'matter-js';
+import { Render, Engine, Bodies, Runner, World, Composite, Mouse, MouseConstraint, Events, Body } from 'matter-js'
 import { skillData, ranges } from '../skill-data';
 import type { DispatchProps } from '../skill-data.ts';
 
 function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
     const commuRef = useRef<HTMLDivElement>(null);
-    const engineRef = useRef<Matter.Engine | null>(null);
-    const renderRef = useRef<Matter.Render | null>(null);
-    const runnerRef = useRef<Matter.Runner | null>(null);
+    const engineRef = useRef<Engine | null>(null);
+    const renderRef = useRef<Render | null>(null);
+    const runnerRef = useRef<Runner | null>(null);
 
     useEffect(() => {
         const container = commuRef.current!;
 
         const initMatter = (container: HTMLDivElement, width: number, height: number) => {
             if (commuRef.current && !engineRef.current) {
-                const engine = Matter.Engine.create();
+                const engine = Engine.create();
                 engineRef.current = engine;
 
-                const render = Matter.Render.create({
+                const render = Render.create({
                     element: commuRef.current,
                     engine: engine,
                     options: {
@@ -29,18 +30,90 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                 });
                 renderRef.current = render;
 
-                render.canvas.style.pointerEvents = 'none';
+                const mouse = Mouse.create(render.canvas)
 
-                let ground = Matter.Bodies.rectangle(300, 300, 600, 30, {
-                    isStatic: true,
+                let mousePos = { x: -9999, y: -9999 };1
+
+                // 每帧施加斥力
+                Events.on(engine, 'beforeUpdate', () => {
+                    const bodies = Composite.allBodies(engine.world);
+                
+                    for (const body of bodies) {
+                        if (body.isStatic) continue;
+
+                        const dx = body.position.x - mousePos.x;
+                        const dy = body.position.y - mousePos.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        const repelRadius = 20;  // 斥力范围
+                        const repelStrength = 0.03; // 斥力强度
+
+                        if (dist < repelRadius && dist > 0) {
+                        // 距离越近，力越大（反比）
+                            const force = (repelRadius - dist) / repelRadius * repelStrength;
+                            Body.applyForce(body, body.position, {
+                                x: (dx / dist) * force,
+                                y: (dy / dist) * force,
+                            });
+                        }
+                    }
                 });
 
-                Matter.Composite.add(engine.world, [ground]);
-                Matter.Render.run(render);
+                Events.on(render, 'afterRender', () => {
+                    const ctx = render.context;
+                    const bodies = Composite.allBodies(engine.world);
 
-                let runner = Matter.Runner.create();
+                    bodies.forEach(body => {
+                        if (!body._label) return;
+                        const { x, y } = body.position;
+                        const angle = body.angle;
+
+                        ctx.save();
+                        ctx.translate(x, y);   // 移动到 body 中心
+                        ctx.rotate(angle);     // 跟随旋转
+
+                        ctx.fillStyle = '#000';
+                        ctx.font = '13px sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(body._label, 0, 0);  // 在原点绘制（即 body 中心）
+
+                        ctx.restore();
+                    });
+                });
+
+                let ground = Bodies.rectangle(300, 280, 600, 30, {isStatic: true});
+                let box = Bodies.rectangle(200, 10, 20, 20, { frictionAir: 0.08 });
+                box._label = 'box';
+                let cir = Bodies.circle(240, 20, 30, { 
+                    frictionAir: 0.05,
+                    render: {
+                        fillStyle: '#fffaf2',
+                        strokeStyle: '#deb887',
+                        lineWidth: 2,
+                        opacity: 0.8
+                    }
+                })
+                cir._label = 'cir';
+
+                Composite.add(engine.world, [ground, box, cir]);
+                Render.run(render);
+
+                render.canvas.addEventListener('mousemove', (e) => {
+                    const rect  = render.canvas.getBoundingClientRect();
+                    mousePos = {
+                        x: e.clientX - rect.left,
+                        y: e.clientY - rect.top
+                    }
+                })
+
+                render.canvas.addEventListener('mouseleave', () => {
+                    mousePos = { x: -9999, y: -9999 }
+                })
+
+                let runner = Runner.create();
                 runnerRef.current = runner;
-                Matter.Runner.run(runner, engine);
+                Runner.run(runner, engine);
             }
         };
 
@@ -59,17 +132,17 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
 
             // Clean up Matter.js resources
             if (runnerRef.current) {
-                Matter.Runner.stop(runnerRef.current);
+                Runner.stop(runnerRef.current);
                 runnerRef.current = null;
             }
             if (renderRef.current) {
-                Matter.Render.stop(renderRef.current);
+                Render.stop(renderRef.current);
                 renderRef.current.canvas.remove();
                 renderRef.current = null;
             }
             if (engineRef.current) {
-                Matter.World.clear(engineRef.current.world, false);
-                Matter.Engine.clear(engineRef.current);
+                World.clear(engineRef.current.world, false);
+                Engine.clear(engineRef.current);
                 engineRef.current = null;
             }
         };
