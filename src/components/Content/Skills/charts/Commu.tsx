@@ -27,6 +27,11 @@ const getGrounds = (canvasWidth: number, canvasHeight: number) => {
     })
 }
 
+const getBubbles = (skills: Array<{name: string, weight: number}>) => {
+    const labels = skills.map(skill => skill['name'].includes(' ') ? skill['name'].replace(' ', '\n'): skill['name'])
+    debugger
+}
+
 function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
     const commuRef = useRef<HTMLDivElement>(null);
     const engineRef = useRef<Engine | null>(null);
@@ -97,8 +102,14 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                         ctx.font = '13px sans-serif';
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
-                        ctx.fillText(body._label, 0, 0);  // 在原点绘制（即 body 中心）
 
+                        const lines = body._label.split(' ');  // 按 \n 拆分
+                        const lineHeight = 16;
+                        const offsetY = -(lines.length - 1) * lineHeight / 2;  // 垂直居中补偿
+                        
+                        lines.forEach((line, i) => {
+                            ctx.fillText(line, 0, offsetY + i * lineHeight);
+                        });
                         ctx.restore();
                     });
                 });
@@ -106,8 +117,9 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                 // gen boundaries
                 const grounds = getGrounds(width, height)
                 // gen skill sprite
+                // const bubbles = getBubbles(skillData.commu)
                 let box = Bodies.rectangle(200, 10, 20, 20, { frictionAir: 0.08 });
-                box._label = 'box';
+                box._label = 'box jj';
                 let cir = Bodies.circle(240, 20, 30, { 
                     frictionAir: 0.05,
                     render: {
@@ -117,7 +129,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                         opacity: 0.8
                     }
                 })
-                cir._label = 'cir';
+                cir._label = 'cir haha';
 
                 // load boundaries, skill sprites
                 Composite.add(engine.world, [...grounds, box, cir]);

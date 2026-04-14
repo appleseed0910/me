@@ -28,9 +28,14 @@ export const skillData : {
     commu: [
         { name: 'Communication', weight: 90 },
         { name: 'Collaboration', weight: 80 },
-        { name: 'Agile', weight: 100},
-        { name: 'Fluent speaking English', weight: 90},
-        { name: 'Japanese N3 certified', weight: 60 }
+        { name: 'Team coordination', weight: 75},
+        { name: 'Project Management', weight: 95},
+        { name: 'Scrum Agile', weight: 95},
+        { name: 'Fluent English', weight: 90},
+        { name: 'Japanese N3', weight: 60 },
+        { name: 'Technical storytelling', weight: 70},
+        // { name: 'Feedback Transparency', weight: 75},
+        // { name: 'Bilingual communication', weight: 77}
     ]
 }
 
