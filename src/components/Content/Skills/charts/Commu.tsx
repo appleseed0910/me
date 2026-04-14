@@ -1,8 +1,26 @@
 import { useEffect, useRef } from 'react';
-// import * as Matter from 'matter-js';
 import { Render, Engine, Bodies, Runner, World, Composite, Mouse, MouseConstraint, Events, Body } from 'matter-js'
 import { skillData, ranges } from '../skill-data';
 import type { DispatchProps } from '../skill-data.ts';
+
+type genBodiesType<T = {}> = {
+    canvasWidth: number
+    canvasHeight: number
+} & T
+
+type genPolygonParamsType = genBodiesType<{
+    weight: number
+    sides?: number
+}>
+
+type genCircleParamsType = genBodiesType<{
+    weight: number
+}>
+
+// type genRectParamsType = genBodiesType<{
+//     rectWidth: number,
+//     rectHeight: number
+// }>
 
 const getGrounds = (canvasWidth: number, canvasHeight: number) => { 
     const thickness = 16;
@@ -27,9 +45,61 @@ const getGrounds = (canvasWidth: number, canvasHeight: number) => {
     })
 }
 
-const getBubbles = (skills: Array<{name: string, weight: number}>) => {
-    const labels = skills.map(skill => skill['name'].includes(' ') ? skill['name'].replace(' ', '\n'): skill['name'])
-    debugger
+const getBubbles = (skills: Array<{name: string, weight: number}>, canvasWidth: number, canvasHeight: number) => {
+    // Bodies.rectangle(x, y, w, h)
+    // Bodies.circle(x, y, radius)
+    // Bodies.polygon(x, y, sides, radius)
+
+    // circle factory
+    const genCircle = ({canvasWidth, canvasHeight, weight} : genCircleParamsType) => {
+        const radius = 30 + Math.floor(Math.random() * 30 * weight / 60)
+        const x = radius + 16 + Math.floor(Math.random() * (canvasWidth - 50 - radius))
+        const y = radius + 16 + Math.floor(Math.random() * (canvasHeight - 50 - radius))
+        
+        const options = {
+            frictionAir: 0.03,
+            density: 0.001,
+            render: {
+                fillStyle: '#f8e5c6',
+                strokeStyle: '#deb887',
+                lineWidth: 2,
+                opacity: 0.8
+            }
+        }
+        return Bodies.circle(x, y, radius, options)
+    }
+
+    // polygon factory
+    const genPolygon = ({canvasWidth, canvasHeight, weight} : genPolygonParamsType) => {
+        const radius = 40 + Math.floor(Math.random() * 30 * weight / 60)
+        const sides = Math.floor(Math.random() * 6) + 2
+        const x = radius + 16 + Math.floor(Math.random() * (canvasWidth - 50 - radius))
+        const y = radius + 16 + Math.floor(Math.random() * (canvasHeight - 50 - radius))
+        
+        const options = {
+            frictionAir: 0.03,
+            density: 0.001,
+            render: {
+                fillStyle: '#ddf7b0',
+                strokeStyle: '#9cd53a',
+                lineWidth: 2,
+                opacity: 0.8
+            }
+        }
+        return Bodies.polygon(x, y, sides, radius, options)
+    }
+
+    const creators = [
+        ({canvasWidth, canvasHeight, weight} : genCircleParamsType) => genCircle({canvasWidth, canvasHeight, weight}),
+        ({canvasWidth, canvasHeight, weight} : genPolygonParamsType) => genPolygon({canvasWidth, canvasHeight, weight})
+    ];
+
+    return skillData.commu.map(skill => {
+        let bubble = creators[Math.floor(Math.random() * 2)]({canvasWidth, canvasHeight, weight: skill.weight})
+        bubble._label = skill.name;
+        return bubble
+    })
+
 }
 
 function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
@@ -71,12 +141,12 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                         const dy = body.position.y - mousePos.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
 
-                        const repelRadius = 20;  // 斥力范围
-                        const repelStrength = 0.03; // 斥力强度
+                        const repelRadius = 50;  // 斥力范围
+                        const repelStrength = 0.05; // 斥力强度
 
                         if (dist < repelRadius && dist > 0) {
                         // 距离越近，力越大（反比）
-                            const force = (repelRadius - dist) / repelRadius * repelStrength;
+                            const force =(repelRadius - dist) / repelRadius * repelStrength;
                             Body.applyForce(body, body.position, {
                                 x: (dx / dist) * force,
                                 y: (dy / dist) * force,
@@ -84,6 +154,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                         }
                     }
                 });
+
                 // 给每个bodies 加上_label
                 Events.on(render, 'afterRender', () => {
                     const ctx = render.context;
@@ -99,7 +170,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                         ctx.rotate(angle);     // 跟随旋转
 
                         ctx.fillStyle = '#000';
-                        ctx.font = '13px sans-serif';
+                        ctx.font = '12px Figtree';
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
 
@@ -117,22 +188,10 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                 // gen boundaries
                 const grounds = getGrounds(width, height)
                 // gen skill sprite
-                // const bubbles = getBubbles(skillData.commu)
-                let box = Bodies.rectangle(200, 10, 20, 20, { frictionAir: 0.08 });
-                box._label = 'box jj';
-                let cir = Bodies.circle(240, 20, 30, { 
-                    frictionAir: 0.05,
-                    render: {
-                        fillStyle: '#fffaf2',
-                        strokeStyle: '#deb887',
-                        lineWidth: 2,
-                        opacity: 0.8
-                    }
-                })
-                cir._label = 'cir haha';
+                const bubbles = getBubbles(skillData.commu, width, height)
 
                 // load boundaries, skill sprites
-                Composite.add(engine.world, [...grounds, box, cir]);
+                Composite.add(engine.world, [...grounds, ...bubbles]);
                 Render.run(render);
 
                 render.canvas.addEventListener('mousemove', (e) => {
