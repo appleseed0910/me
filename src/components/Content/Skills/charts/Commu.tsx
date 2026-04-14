@@ -24,7 +24,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                     options: {
                         width: width,
                         height: height,
-                        background: '#fff',
+                        background: '#f2ece4',
                         wireframes: false
                     },
                 });
@@ -116,7 +116,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                 Runner.run(runner, engine);
             }
         };
-
+        
         const observer = new ResizeObserver((entries) => {
             const { width, height } = entries[0].contentRect;
             if (width > 0 && height > 0) {
@@ -148,7 +148,7 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
         };
     }, []);
 
-    return <div ref={commuRef} style={{ width: '100%', height: 'min(55vh, 500px)' }}></div>;
+    return <div ref={commuRef} style={{ width: '100%', height: '100%' }}></div>;
 }
 
 export default Commu;
