@@ -95,7 +95,8 @@ const getBubbles = (skills: Array<{name: string, weight: number}>, canvasWidth: 
     ];
 
     return skillData.commu.map(skill => {
-        let bubble = creators[Math.floor(Math.random() * 2)]({canvasWidth, canvasHeight, weight: skill.weight})
+        const idx = Math.random() > 0.65 ? 0 : 1
+        let bubble = creators[idx]({canvasWidth, canvasHeight, weight: skill.weight})
         bubble._label = skill.name;
         return bubble
     })
@@ -141,8 +142,8 @@ function Commu({ chartType = 'commu', registerDispatcher }: DispatchProps) {
                         const dy = body.position.y - mousePos.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
 
-                        const repelRadius = 50;  // 斥力范围
-                        const repelStrength = 0.05; // 斥力强度
+                        const repelRadius = 80;  // 斥力范围
+                        const repelStrength = 0.08; // 斥力强度
 
                         if (dist < repelRadius && dist > 0) {
                         // 距离越近，力越大（反比）
