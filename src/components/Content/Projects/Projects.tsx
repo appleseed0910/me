@@ -1,4 +1,5 @@
 import './style.less'
+import '../common.less'
 
 function Projects() {
 
@@ -8,6 +9,7 @@ function Projects() {
                 <h6 className='projects-page-title'>What I've done! </h6>
 
                 <div className="projects-page-content">
+                    <span className='highlight'>TEST</span>
                     <ul>
                         <li>1</li>
                         <li>1</li>
