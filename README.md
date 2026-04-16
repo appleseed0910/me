@@ -9,6 +9,7 @@ TODO:
     - experienc
 2. mobile styles
 3. ~~change scroll to inner container! also the scrolltoTop btn~~
+4. githubpage route fallback
 
 reference:
 1. https://tailwindcss.com/plus/ui-blocks/application-ui/elements/badges
