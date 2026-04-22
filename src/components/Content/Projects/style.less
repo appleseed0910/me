@@ -19,7 +19,7 @@
 
     &-content {
         font-size: .16rem;
-        padding: .18rem 0 .18rem 0;
+        padding-top: .18rem;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -35,12 +35,34 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
 
-            .highlight {
-                
-            }
-
             article {
                 border-top: 1px solid #b55322;
+                position: relative;
+
+                p.title {
+                    position: absolute;
+                    color: #b55322;
+                    background-color: #fff;
+                    font-size: .14rem;
+                    padding: 0 .06rem;
+                    top: -.1rem;
+
+                    &::before {
+                        color: #242424;
+                        content: '[';
+                        padding-right: .02rem;
+                    }
+
+                    &::after {
+                        color: #242424;
+                        content: ']';
+                        padding-left: .02rem;
+                    }
+                }
+
+                .desc {
+                    padding: .1rem .08rem;
+                }
             }
 
             .chart {
@@ -48,17 +70,21 @@
                 grid-column: span 2;
                 grid-row: 1;
             }
+
             .quickgit {
                 grid-row: 1;
             }
+
             .autoexcel {
                 border-right: 1px solid #b55322;
                 grid-row: 2;
             }
+
             .okr {
                 grid-column: span 2;
                 grid-row: 2;
             }
+
         }
     }
 }

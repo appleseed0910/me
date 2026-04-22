@@ -1,6 +1,6 @@
 import './style.less'
 import '../common.less'
-import sampleDesc from './projectsDesc'
+import { projectsData } from './projectsDesc'
 
 function Projects() {
 
@@ -15,10 +15,14 @@ function Projects() {
                         I have listed a few of my <span className='highlight projects'>personal</span> projects below,<br />for my <span className='highlight projects'>professional</span> projects plz refer to my resume :p
                     </p>
                     <div className='container'>
-                        <article className='chart'>1</article>
-                        <article className='quickgit'>2</article>
-                        <article className='autoexcel'>3</article>
-                        <article className='okr'>4</article>
+                        {projectsData.map((project,idx) => {
+                            return (
+                                <article key={idx} className={project.name}>
+                                    <p className='title'>{project.name}</p>
+                                    <div className='desc'>11</div>
+                                </article>
+                            )
+                        })}
                     </div>
                 </div>
 
