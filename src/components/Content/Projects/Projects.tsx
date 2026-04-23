@@ -44,6 +44,11 @@ function Projects() {
                                                                 <Link to={`${demoUrl}${project.ghUrl}`} target='_blank'>Live demo</Link>
                                                             </div>
                                                         </div>
+                                                        <div className='desc-text-paras'>
+                                                            {project?.text?.map((para, i) => {
+                                                                return <p key={i} dangerouslySetInnerHTML={{ __html: para }} />
+                                                            })}
+                                                        </div>
                                                         
                                                     </div>
                                                 </>:
