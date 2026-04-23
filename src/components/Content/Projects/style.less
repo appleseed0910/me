@@ -33,7 +33,7 @@
             height: 100%;
             margin-top: .14rem;
             display: grid;
-            grid-template-areas: 
+            grid-template-areas:
                 "chart chart-text"
                 "quickgit autoexcel"
                 "okr-text okr";
@@ -66,6 +66,48 @@
 
                 .desc {
                     padding: .1rem .08rem;
+
+                    &-text {
+                        padding: .1rem .08rem;
+
+                        &-paras {
+                            p {
+                                font-size: .14rem;
+                            }
+                        }
+
+                        a {
+                            color: #5e68ac;
+
+                            &:hover {
+                                border-bottom: 1px dashed #242424;
+                            }
+                        }
+
+                        &-links {
+                            display: flex;
+                        }
+
+                        &-link-start {
+                            padding-left: .1rem;
+
+                            &::before {
+                                content: '·';
+                                font-weight: bold;
+                                padding-right: .05rem;
+                            }
+                        }
+
+                        &-link-end {
+                            padding-left: .1rem;
+
+                            &::before {
+                                content: '·';
+                                font-weight: bold;
+                                padding-right: .05rem;
+                            }
+                        }
+                    }
                 }
 
                 &:nth-child(odd) {
@@ -87,7 +129,7 @@
 
             .quickgit {
                 grid-area: quickgit;
-                
+
                 grid-column: 1 / 4;
                 grid-row: 2;
             }

@@ -41,13 +41,13 @@ function Sidebar() {
                     </div>
                     
                     <div className="icon-container">
-                        <Link to='https://www.linkedin.com/in/xinyi-hu-a95282127'>
-                            <img className='linkedin' src={linkedin} alt="linkedin page" />
+                        <Link to='https://www.linkedin.com/in/xinyi-hu-a95282127' target='_blank'>
+                            <img className='linkedin' src={linkedin} alt="linkedin page"/>
                         </Link>
-                        <Link to='https://github.com/appleseed0910'>
-                            <img className='github' src={githubUrl} alt='github page' />
+                        <Link to='https://github.com/appleseed0910' target='_blank'>
+                            <img className='github' src={githubUrl} alt='github page'/>
                         </Link>
-                        <Link to='mailto:appleseed0910@gmail.com'>
+                        <Link to='mailto:appleseed0910@gmail.com' target='_blank'>
                             <img className='mail' src={mailUrl} alt="Send mail to me!" />
                         </Link>
                         
