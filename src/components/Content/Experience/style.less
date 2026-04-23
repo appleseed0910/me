@@ -19,6 +19,25 @@
 
     &-content {
         font-size: .16rem;
-        padding: .18rem;
+        padding: .5rem .18rem .18rem .3rem;
+
+        &-list {
+            .item {
+                font-size: .14rem;
+                &::before {
+                    content: '·';
+                    font-weight: bold;
+                    padding-right: .05rem;
+                }
+            }
+        }
+
+        a {
+            color: #5e68ac;
+
+            &:hover {
+                border-bottom: 1px dashed #242424;
+            }
+        }
     }
 }
