@@ -46,7 +46,7 @@ export const projectsData: Array<project> = [
             'One of my clumsy hand-made wheels.',
             'When I was working on my personal project on my own, I felt it was too <span class=\'highlight projects\'>troublesome</span> to always type three times of git commands,',
             '<i>git add :/</i>, <i>git commit -m</i>, <i>git push</i>',
-            'I clearly know \'m the only one making changes, so I figured out to pack these three cmds together.',
+            'I clearly know I\'m the only one making changes, so I figured out to pack these three cmds together.',
             '<br />',
             'by <b>NodeJS</b>, the custom cmd for myself was built easily.',
             'Usage: <b>quickgit \'your commit message here\'</b> then your changes are on!'
@@ -64,7 +64,7 @@ export const projectsData: Array<project> = [
             'During my daily work, I often have to deal with a bunch of copy-paste-sort of page data field by field,',
             '<br />',
             '<span class=\'highlight projects\'>As a developer, my ability and my fun is to wheeling things,</span>',
-            'So I wrote this automation script to help my grabbing data and put them into Excel cells.'
+            'So I wrote this automation script to help me grabbing data and put them into Excel cells.'
         ],
         isLive: false
     },
@@ -78,7 +78,7 @@ export const projectsData: Array<project> = [
             '<b><a href=\'https://animejs.com/\' target=\'blank\'>Anime.js</a></b> is the main tool I used. ',
             '<del>Tho I don\'t feel I did a good job.</del>',
             '<br />',
-            'When I was asked to create slides for a report, instead of PowerPoint, I tried to challenge myself with an web animation demo.',
+            'When I was asked to create slides for a report, instead of PowerPoint, I tried to challenge myself with a web animation demo.',
             '<br />',
             'The demo was made for presenting, so I didn\'t add any \'how to use\' tips,',
             'Just <b><span class=\'highlight projects\'>Scroll down</span></b> is enough.',
