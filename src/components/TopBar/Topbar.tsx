@@ -6,10 +6,13 @@ function Topbar() {
     return (
         <>
             <div className="top-bar">
-                <nav>
-                    <Link to="/">Content 1</Link>
-                    <Link to="/content2">Content 2</Link>
-                </nav>
+                <p>
+                    I'm flatterd you're visiting my site from Mobile side!
+                    <br />
+                    Whereas the mobile version is still WIP.
+                    <br />
+                    I appreciate if you could visit from laptop or tablet <span style={{color : 'red'}}>&lt;3</span>
+                </p>
             </div>
         </>
     );
