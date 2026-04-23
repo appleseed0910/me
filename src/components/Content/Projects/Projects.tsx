@@ -1,6 +1,12 @@
 import './style.less'
 import '../common.less'
 import { projectsData } from './projectsDesc'
+import { Link } from 'react-router-dom'
+
+
+const repoUrl = 'https://github.com/appleseed0910'
+const pageUrl = 'https://appleseed0910.github.io'
+const imgUrl = '../../../assets/projects'
 
 function Projects() {
 
@@ -17,9 +23,27 @@ function Projects() {
                     <div className='container'>
                         {projectsData.map((project,idx) => {
                             return (
-                                <article key={idx} className={project.name}>
-                                    <p className='title'>{project.name}</p>
-                                    <div className='desc'>11</div>
+                                <article key={idx} className={project.class}>
+                                    <p className='title'>{project.desc}</p>
+                                    <div className='desc'>
+                                        {project.imgUrl ? 
+                                            <>
+                                                <div className='desc-img'>
+                                                    <Link to={`${pageUrl}${project.ghUrl}`} target='_blank' >
+                                                        <img src={project.imgUrl} alt="" />
+                                                    </Link>                                                    
+                                                </div>
+                                            </>:
+                                            project.isLive ? 
+                                                // for projects has live links
+                                                <>
+                                                </>:
+                                                // for projects doesn't has live links
+                                                <>
+                                                </>
+                                        }
+
+                                    </div>
                                 </article>
                             )
                         })}

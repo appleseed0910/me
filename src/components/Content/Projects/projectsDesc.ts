@@ -1,6 +1,10 @@
+import chartUrl from '../../../assets/projects/chart.png'
+import okrUrl from '../../../assets/projects/okr.png'
+
 type project = {
     name: string,
     desc: string,
+    class: string,
     imgUrl?: string,
     ghUrl: string,
     isLive: boolean
@@ -12,30 +16,46 @@ type project = {
 export const projectsData: Array<project> = [
     {
         name: 'chart',
-        desc: '',
-        imgUrl: '',
+        class: 'chart',
+        desc: 'chart',
+        imgUrl: chartUrl,
         ghUrl: '/chart_demo',
         isLive: true
     },
     {
-        name: 'quickgit',
-        desc: '',
-        imgUrl: '',
+        name: 'chart-text',
+        class: 'chart-text',
+        desc: '...',
         ghUrl: '',
+        isLive: false
+    },
+    {
+        name: 'quickgit',
+        class:'quickgit',
+        desc: 'quickgit',
+        ghUrl: '/quickgit',
         isLive: false
     },
     {
         name: 'autoexcel',
-        desc: '',
-        imgUrl: '',
-        ghUrl: '',
+        class: 'autoexcel',
+        desc: 'autoexcel',
+        ghUrl: '/autoexcel',
+        isLive: false
+    },
+    {
+        name: 'okr-text',
+        class: 'okr-text',
+        desc: '...',
+        ghUrl: '/anime-exer',
         isLive: false
     },
     {
         name: 'okr',
-        desc: '',
-        imgUrl: '',
-        ghUrl: '',
+        class: 'okr',
+        desc: 'okr',
+        imgUrl: okrUrl,
+        ghUrl: '/anime-exer',
         isLive: true
     }
 ]
