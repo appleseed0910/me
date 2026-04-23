@@ -13,7 +13,7 @@ import Skills from './components/Content/Skills/Skills';
 
 function App() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename='/me/'>
           <Routes>
               <Route path="/" element={<Layout />}>
                   <Route index element={<About />} />
