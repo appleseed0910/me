@@ -32,7 +32,7 @@ export const projectsData: Array<project> = [
             'As both a Scrum Master and a developer, I care about how these tickets reflect our team\'s working status and the root cause behind problems.',
             'So I built this report app with <b><a href=\'https://echarts.apache.org/en/index.html\' target=\'blank\'>Echarts</a></b> and <b>React</b>.',
             '<br />',
-            'As a newbie to Data Viz and React, I gotta say, <span class=\'highlight projects\'><b>setOption</b> and <b>useEffect</b></span> they are meant to be together!!!'
+            'As a newbie to Data Viz and React, I gotta say, <span class=\'highlight projects\'><b>setOption</b> and <b>useState</b></span> they are meant to be together!!!'
         ],
         ghUrl: '/chart_demo',
         isLive: true
